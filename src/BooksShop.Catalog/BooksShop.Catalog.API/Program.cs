@@ -1,6 +1,11 @@
 using BooksShop.Catalog.Repository.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
+using AutoMapper;
+using BooksShop.Catalog.Application;
+using BooksShop.Catalog.Application.Interfaces;
+using BooksShop.Catalog.Repository;
+using BooksShop.Catalog.Repository.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +15,17 @@ builder.Services.AddCors();
 builder.Services.AddControllers();
 builder.Services.AddDbContext<DataContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("BooksShop-Catalog")));
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+//services
+builder.Services.AddScoped<IBookService, BookService>();
+
+//repositories
+builder.Services.AddScoped<IBaseRepository, BaseRepository>();
+builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
+builder.Services.AddScoped<IBookRepository, BookRepository>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
