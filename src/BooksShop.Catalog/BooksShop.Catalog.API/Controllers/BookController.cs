@@ -15,12 +15,33 @@ namespace BooksShop.Catalog.API.Controllers
             _bookService = bookService;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAllAsync()
+        {
+            try
+            {
+                var response = await _bookService.GetAllAsync();
+
+                if(response == null)
+                    return NoContent();
+                
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                "Error: " + e.Message);
+            }
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateAsync([FromBody] BookDTO model)
         {
             try
             {
-                return Ok(await _bookService.CreateAsync(model));
+                var response = await _bookService.CreateAsync(model);
+
+                return Created("", response);
             }
             catch (Exception e)
             {

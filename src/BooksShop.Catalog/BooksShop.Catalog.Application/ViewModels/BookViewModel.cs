@@ -1,8 +1,8 @@
 using BooksShop.Catalog.Domain.Enums;
 
-namespace BooksShop.Catalog.Domain
+namespace BooksShop.Catalog.Application.ViewModels
 {
-    public class Book
+    public class BookViewModel
     {
         public int Id { get; set; }
         public string? Title { get; set; }
@@ -10,15 +10,12 @@ namespace BooksShop.Catalog.Domain
         public CoverType CoverTypeId { get; set; }
         public Language LanguageId { get; set; }
         public int Pages { get; set; }
-        public Publisher? Publisher { get; set; }
-        public int PublisherId { get; set; }
+        public PublisherViewModel? Publisher { get; set; }
         public DateTime PublicationDate { get; set; }
         public double DimensionX { get; set; }
         public double DimensionY { get; set; }
         public double Price { get; set; }
         public int Quantity { get; set; }
-        public List<AuthorBook> AuthorBooks { get; set; } = new List<AuthorBook>();
-        
-        
+        public List<AuthorViewModel> Authors { get; set; } = new List<AuthorViewModel>();
     }
 }

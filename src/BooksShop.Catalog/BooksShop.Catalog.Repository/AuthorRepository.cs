@@ -21,5 +21,23 @@ namespace BooksShop.Catalog.Repository
 
             return await _context.Author.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
         }
+
+        public async Task<List<Author>?> GetByListIdsAsync(List<int> ids)
+        {
+            if(ids == null || _context.Author == null)
+                return null;
+            
+            var authors = new List<Author>();
+
+            foreach(var item in ids)
+            {    
+                var authorFinder = await _context.Author.AsNoTracking().FirstOrDefaultAsync(x => x.Id == item);
+
+                if(authorFinder != null)
+                    authors.Add(authorFinder);
+            }
+
+            return authors;
+        }
     }
 }

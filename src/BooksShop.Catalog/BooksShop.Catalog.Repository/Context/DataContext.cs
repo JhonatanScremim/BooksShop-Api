@@ -14,7 +14,15 @@ namespace BooksShop.Catalog.Repository.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder){
             modelBuilder.Entity<AuthorBook>()
-            .HasKey(x => new {x.AuthorId, x.BookId});
+                .HasKey(x => new {x.AuthorId, x.BookId});
+            modelBuilder.Entity<AuthorBook>()
+                .HasOne(bc => bc.Book)
+                .WithMany(b => b.AuthorBooks)
+                .HasForeignKey(bc => bc.BookId);  
+            modelBuilder.Entity<AuthorBook>()
+                .HasOne(bc => bc.Author)
+                .WithMany(c => c.AuthorBooks)
+                .HasForeignKey(bc => bc.AuthorId);
         }
     }
 }

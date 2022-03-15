@@ -14,6 +14,15 @@ namespace BooksShop.Catalog.Repository
             _context = context;
         }
 
+        public async Task<List<Book>?> GetAllAsync()
+        {
+            if(_context.Book == null)
+                return null;
+
+            return await _context.Book.Include(x => x.Publisher)
+                                .Include(x => x.AuthorBooks).ThenInclude(x => x.Author).AsNoTracking().ToListAsync();
+        }
+
         public async Task<Book?> GetByTitleAsync(string title)
         {
             if(title == null || _context.Book == null)
