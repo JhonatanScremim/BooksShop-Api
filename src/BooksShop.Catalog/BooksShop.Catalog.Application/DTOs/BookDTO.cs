@@ -16,6 +16,7 @@ namespace BooksShop.Catalog.Application.DTOs
         [Range(1,3)]
         public Language LanguageId { get; set; }
         public int Pages { get; set; }
+        [Range(1, 1000)]
         public int PublisherId { get; set; }
         public DateTime PublicationDate { get; set; }
         public double DimensionX { get; set; }

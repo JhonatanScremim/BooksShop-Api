@@ -1,4 +1,5 @@
 using BooksShop.Catalog.Application.DTOs;
+using BooksShop.Catalog.Application.Helpers.Exceptions;
 using BooksShop.Catalog.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -42,6 +43,33 @@ namespace BooksShop.Catalog.API.Controllers
                 var response = await _bookService.CreateAsync(model);
 
                 return Created("", response);
+            }
+            catch(BadRequestException e)
+            {
+                return BadRequest("Error: " + e.Message);
+            }
+            catch (Exception e)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                "Error: " + e.Message);
+            }
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete([FromQuery] int bookId)
+        {
+            try
+            {
+                var response = await _bookService.Delete(bookId);
+
+                if(response == false)
+                    return BadRequest();
+
+                return Ok("Success");
+            }
+            catch(BadRequestException e)
+            {
+                return BadRequest("Error: " + e.Message);
             }
             catch (Exception e)
             {

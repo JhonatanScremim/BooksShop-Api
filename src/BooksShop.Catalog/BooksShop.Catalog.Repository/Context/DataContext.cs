@@ -18,7 +18,8 @@ namespace BooksShop.Catalog.Repository.Context
             modelBuilder.Entity<AuthorBook>()
                 .HasOne(bc => bc.Book)
                 .WithMany(b => b.AuthorBooks)
-                .HasForeignKey(bc => bc.BookId);  
+                .HasForeignKey(bc => bc.BookId)
+                .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<AuthorBook>()
                 .HasOne(bc => bc.Author)
                 .WithMany(c => c.AuthorBooks)

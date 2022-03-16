@@ -23,6 +23,14 @@ namespace BooksShop.Catalog.Repository
                                 .Include(x => x.AuthorBooks).ThenInclude(x => x.Author).AsNoTracking().ToListAsync();
         }
 
+        public async Task<Book?> GetByIdAsync(int? id)
+        {
+            if(id == null || _context.Book == null)
+                return null;
+
+            return await _context.Book.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+        }
+
         public async Task<Book?> GetByTitleAsync(string title)
         {
             if(title == null || _context.Book == null)

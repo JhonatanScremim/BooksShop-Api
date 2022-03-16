@@ -1,5 +1,6 @@
 using AutoMapper;
 using BooksShop.Catalog.Application.DTOs;
+using BooksShop.Catalog.Application.Helpers.Exceptions;
 using BooksShop.Catalog.Application.Interfaces;
 using BooksShop.Catalog.Application.ViewModels;
 using BooksShop.Catalog.Domain;
@@ -24,20 +25,20 @@ namespace BooksShop.Catalog.Application
 
         public async Task<List<BookViewModel>?> GetAllAsync()
         {
-            var books = await _bookRepository.GetAllAsync();
-            return _mapper.Map<List<BookViewModel>>(books);
+            return _mapper.Map<List<BookViewModel>>(await _bookRepository.GetAllAsync());
         }
+        
         public async Task<BookViewModel?> CreateAsync(BookDTO model)
         {
             var book = _mapper.Map<Book>(model);
 
             if(model.AuthorsIds == null)
-                throw new Exception("AuthorsIds Required!");
+                throw new BadRequestException("AuthorsIds Required!");
 
             var authorsIds = await _authorRepository.GetByListIdsAsync(model.AuthorsIds);
 
             if(authorsIds?.Count < model.AuthorsIds.Count)
-                throw new Exception("Not found all authors by Ids");
+                throw new BadRequestException("Not found all authors by Ids");
 
             foreach(var id in model.AuthorsIds)
             {
@@ -50,9 +51,24 @@ namespace BooksShop.Catalog.Application
             }
 
             if(!await _baseRepository.SaveChangesAsync())
-                throw new Exception("Could not create");
+                throw new BadRequestException("Could not create");
 
             return _mapper.Map<BookViewModel>(book);
+        }
+
+        public async Task<bool> Delete(int? bookId)
+        {
+            if(bookId == null || bookId <= 0)
+                throw new BadRequestException("BookId is required!");
+
+            var book = await _bookRepository.GetByIdAsync(bookId);
+
+            if (book == null)
+                throw new BadRequestException("Book is not exists");
+
+            _baseRepository.Delete(book);
+
+            return await _baseRepository.SaveChangesAsync();
         }
     }
 }
