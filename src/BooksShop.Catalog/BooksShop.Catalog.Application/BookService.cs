@@ -1,3 +1,4 @@
+using System.Reflection;
 using AutoMapper;
 using BooksShop.Catalog.Application.DTOs;
 using BooksShop.Catalog.Application.Helpers.Exceptions;
@@ -5,6 +6,7 @@ using BooksShop.Catalog.Application.Interfaces;
 using BooksShop.Catalog.Application.ViewModels;
 using BooksShop.Catalog.Domain;
 using BooksShop.Catalog.Repository.Interfaces;
+using System.Linq;
 
 namespace BooksShop.Catalog.Application
 {
@@ -40,18 +42,48 @@ namespace BooksShop.Catalog.Application
             if(authorsIds?.Count < model.AuthorsIds.Count)
                 throw new BadRequestException("Not found all authors by Ids");
 
-            foreach(var id in model.AuthorsIds)
-            {
-                var authorBook = new AuthorBook(){
-                    AuthorId = id,
-                    Book = book
-                };
-
-                _baseRepository.CreateAsync(authorBook);
-            }
+                foreach (var authorBook in from id in model.AuthorsIds
+                                       let authorBook = new AuthorBook()
+                                       {
+                                           AuthorId = id,
+                                           Book = book
+                                       }
+                                       select authorBook)
+                _baseRepository.Create(authorBook);
 
             if(!await _baseRepository.SaveChangesAsync())
                 throw new BadRequestException("Could not create");
+
+            return _mapper.Map<BookViewModel>(book);
+        }
+
+        
+        public async Task<BookViewModel?> UpdateAsync(int bookId, BookDTO model)
+        {
+            var oldBook = await _bookRepository.GetByIdAsync(bookId);
+
+            if(oldBook == null)
+                throw new BadRequestException("Book is not found !");
+
+            if(model.AuthorsIds == null || !model.AuthorsIds.Any())
+                throw new BadRequestException("Author Ids required !");
+
+            //Corrigir exceção
+            _baseRepository.DeleteRange(oldBook.AuthorBooks);
+            var book = _mapper.Map<Book>(model);
+
+            foreach(var item in model.AuthorsIds)
+            {
+                _baseRepository.Create(new AuthorBook
+                {
+                    AuthorId = item,
+                    BookId = book.Id
+                });
+            }
+            _baseRepository.Update(book);
+                
+            if(!await _baseRepository.SaveChangesAsync())
+                throw new BadRequestException("Could not update");
 
             return _mapper.Map<BookViewModel>(book);
         }

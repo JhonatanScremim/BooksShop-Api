@@ -7,6 +7,7 @@ namespace BooksShop.Catalog.Application.Interfaces
     {
         Task<List<BookViewModel>?> GetAllAsync();
         Task<BookViewModel?> CreateAsync(BookDTO model);
+        Task<BookViewModel?> UpdateAsync(int bookId, BookDTO model);
         Task<bool> Delete(int? bookId);
     }
 }

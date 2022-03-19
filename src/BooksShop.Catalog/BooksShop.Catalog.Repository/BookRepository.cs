@@ -28,7 +28,8 @@ namespace BooksShop.Catalog.Repository
             if(id == null || _context.Book == null)
                 return null;
 
-            return await _context.Book.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+            return await _context.Book.Include(x => x.Publisher)
+                                .Include(x => x.AuthorBooks).ThenInclude(x => x.Author).AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<Book?> GetByTitleAsync(string title)

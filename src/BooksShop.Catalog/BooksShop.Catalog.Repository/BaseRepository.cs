@@ -12,7 +12,7 @@ namespace BooksShop.Catalog.Repository
             _context = context;
         }
 
-        public void CreateAsync<T>(T entity)
+        public void Create<T>(T entity)
         {
             if(entity == null)
                 return;
@@ -20,7 +20,7 @@ namespace BooksShop.Catalog.Repository
             _context.Add(entity);
         }
 
-        public void UpdateAsync<T>(T entity)
+        public void Update<T>(T entity)
         {
             if(entity == null)
                 return;

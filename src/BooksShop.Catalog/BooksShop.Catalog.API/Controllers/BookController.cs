@@ -55,8 +55,28 @@ namespace BooksShop.Catalog.API.Controllers
             }
         }
 
+        [HttpPut("{bookId}")]
+        public async Task<IActionResult> UpdateAsync(int bookId, [FromBody] BookDTO model)
+        {
+            try
+            {
+                var response = await _bookService.UpdateAsync(bookId, model);
+
+                return Ok("Updated");
+            }
+            catch(BadRequestException e)
+            {
+                return BadRequest("Error: " + e.Message);
+            }
+            catch (Exception e)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                "Error: " + e.Message);
+            }
+        }
+
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromQuery] int bookId)
+        public async Task<IActionResult> DeleteAsync([FromQuery] int bookId)
         {
             try
             {

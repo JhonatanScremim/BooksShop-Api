@@ -11,7 +11,7 @@ namespace BooksShop.Catalog.Application.Helpers.Mappers
             CreateMap<Book, BookViewModel>()
                 .AfterMap((s, d) => 
                 {
-                    if(s.AuthorBooks != null)
+                    if(s.AuthorBooks != null && d.Authors != null)
                     {
                         foreach(var item in s.AuthorBooks){
                             if(item.Author != null)
