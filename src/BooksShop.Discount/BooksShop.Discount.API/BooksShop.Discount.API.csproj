@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BooksShop.Discount.Domain\BooksShop.Discount.Domain.csproj" />
+    <ProjectReference Include="..\BooksShop.Discount.Repository\BooksShop.Discount.Repository.csproj" />
+  </ItemGroup>
+
+</Project>
