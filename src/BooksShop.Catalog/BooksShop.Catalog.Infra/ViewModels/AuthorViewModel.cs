@@ -1,4 +1,4 @@
-namespace BooksShop.Catalog.Application.ViewModels
+namespace BooksShop.Catalog.Infra.ViewModels
 {
     public class AuthorViewModel
     {

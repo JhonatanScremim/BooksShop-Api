@@ -1,9 +1,9 @@
 using System.Reflection;
 using AutoMapper;
-using BooksShop.Catalog.Application.DTOs;
-using BooksShop.Catalog.Application.Helpers.Exceptions;
+using BooksShop.Catalog.Infra.DTOs;
+using BooksShop.Catalog.Infra.Helpers.Exceptions;
 using BooksShop.Catalog.Application.Interfaces;
-using BooksShop.Catalog.Application.ViewModels;
+using BooksShop.Catalog.Infra.ViewModels;
 using BooksShop.Catalog.Domain;
 using BooksShop.Catalog.Repository.Interfaces;
 using System.Linq;

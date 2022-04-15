@@ -1,4 +1,4 @@
-namespace BooksShop.Catalog.Application.Helpers.Exceptions
+namespace BooksShop.Catalog.Infra.Helpers.Exceptions
 {
     public class BadRequestException : Exception
     {

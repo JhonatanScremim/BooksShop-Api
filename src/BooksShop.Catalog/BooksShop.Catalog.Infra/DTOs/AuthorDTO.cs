@@ -1,4 +1,4 @@
-namespace BooksShop.Catalog.Application.DTOs
+namespace BooksShop.Catalog.Infra.DTOs
 {
     public class AuthorDTO
     {

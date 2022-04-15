@@ -1,5 +1,5 @@
-using BooksShop.Catalog.Application.DTOs;
-using BooksShop.Catalog.Application.ViewModels;
+using BooksShop.Catalog.Infra.DTOs;
+using BooksShop.Catalog.Infra.ViewModels;
 
 namespace BooksShop.Catalog.Application.Interfaces
 {

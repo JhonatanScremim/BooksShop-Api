@@ -1,5 +1,5 @@
-using BooksShop.Catalog.Application.DTOs;
-using BooksShop.Catalog.Application.Helpers.Exceptions;
+using BooksShop.Catalog.Infra.DTOs;
+using BooksShop.Catalog.Infra.Helpers.Exceptions;
 using BooksShop.Catalog.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 

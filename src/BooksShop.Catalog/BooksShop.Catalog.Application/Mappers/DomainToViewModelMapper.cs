@@ -1,5 +1,5 @@
 using AutoMapper;
-using BooksShop.Catalog.Application.ViewModels;
+using BooksShop.Catalog.Infra.ViewModels;
 using BooksShop.Catalog.Domain;
 
 namespace BooksShop.Catalog.Application.Helpers.Mappers

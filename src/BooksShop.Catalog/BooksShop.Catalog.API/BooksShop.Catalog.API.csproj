@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BooksShop.Catalog.Application\BooksShop.Catalog.Application.csproj" />
+    <ProjectReference Include="..\BooksShop.Catalog.Infra\BooksShop.Catalog.Infra.csproj" />
   </ItemGroup>
 
 </Project>
