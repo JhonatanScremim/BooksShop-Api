@@ -7,6 +7,7 @@ using BooksShop.Catalog.Infra.ViewModels;
 using BooksShop.Catalog.Domain;
 using BooksShop.Catalog.Repository.Interfaces;
 using System.Linq;
+using BooksShop.Catalog.Infra.Helpers.Models;
 
 namespace BooksShop.Catalog.Application
 {
@@ -23,6 +24,18 @@ namespace BooksShop.Catalog.Application
             _bookRepository = bookRepository;
             _authorRepository = authorRepository;
             _mapper = mapper;
+        }
+
+        public PageList<BookViewModel>? GetPaginated(PageParams pageParams)
+        {
+            var queryPaginated = _bookRepository.GetPaginated(pageParams, out int totalCount);
+
+            if (queryPaginated == null)
+                return null;
+
+            var books = _mapper.Map<List<BookViewModel>>(queryPaginated.ToList());
+
+            return new PageList<BookViewModel>(pageParams.PageNumber, pageParams.PageSize, totalCount, books);
         }
 
         public async Task<List<BookViewModel>?> GetAllAsync()

@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BooksShop.Catalog.Domain\BooksShop.Catalog.Domain.csproj" />
+    <ProjectReference Include="..\BooksShop.Catalog.Infra\BooksShop.Catalog.Infra.csproj" />
   </ItemGroup>
 
   <ItemGroup>

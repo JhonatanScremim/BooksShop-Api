@@ -2,6 +2,7 @@ using BooksShop.Catalog.Infra.DTOs;
 using BooksShop.Catalog.Infra.Helpers.Exceptions;
 using BooksShop.Catalog.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using BooksShop.Catalog.Infra.Helpers.Models;
 
 namespace BooksShop.Catalog.API.Controllers
 {
@@ -15,6 +16,23 @@ namespace BooksShop.Catalog.API.Controllers
         {
             _bookService = bookService;
         }
+
+        [HttpGet("paginated")]
+        public IActionResult GetPaginated([FromQuery] PageParams pageParams)
+        {
+            try
+            {
+                var response = _bookService.GetPaginated(pageParams);
+                
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                "Error: " + e.Message);
+            }
+        }
+
 
         [HttpGet]
         public async Task<IActionResult> GetAllAsync()
