@@ -13,7 +13,7 @@ namespace BooksShop.Basket.Infra
         private readonly string _hostName;
         private readonly string _username;
         private readonly string _password;
-        private IConnection _connection;
+        private IConnection? _connection;
 
         public RabbitMQMessageSender(IConfiguration configuration)
         {
