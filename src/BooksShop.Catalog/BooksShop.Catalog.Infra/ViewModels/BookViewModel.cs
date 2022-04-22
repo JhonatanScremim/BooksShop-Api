@@ -16,6 +16,8 @@ namespace BooksShop.Catalog.Infra.ViewModels
         public double DimensionY { get; set; }
         public double Price { get; set; }
         public int Quantity { get; set; }
+        public int Discount { get; set; }
+        public double PriceWithDiscount { get; set; }
         public List<AuthorViewModel>? Authors { get; set; } = new List<AuthorViewModel>();
     }
 }

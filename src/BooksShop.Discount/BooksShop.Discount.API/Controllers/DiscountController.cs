@@ -14,12 +14,12 @@ namespace BooksShop.Discount.API.Controllers
             _repository = repository;
         }
 
-        [HttpGet("{bookName}")]
-        public async Task<IActionResult> GetAsync(string bookName)
+        [HttpGet("{bookId}")]
+        public async Task<IActionResult> GetAsync(int bookId)
         {
             try
             {
-                return Ok(await _repository.GetAsync(bookName));
+                return Ok(await _repository.GetAsync(bookId));
             }
             catch(Exception e)
             {

@@ -18,13 +18,13 @@ namespace BooksShop.Discount.Repository
             _connectionString = _configuration.GetConnectionString("BooksShop-Discount");
         }
 
-        public async Task<Coupon> GetAsync(string bookName)
+        public async Task<Coupon> GetAsync(int bookId)
         {
             using (var conn = new SqlConnection(_connectionString))
             {
                 return await conn.QueryFirstOrDefaultAsync<Coupon>(
-                    "select * from Coupon where bookName = @BookName",
-                    new { BookName = bookName });
+                    "select * from Coupon where bookId = @BookId",
+                    new { BookId = bookId });
             }
         }
 
