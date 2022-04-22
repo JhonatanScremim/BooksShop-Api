@@ -1,4 +1,7 @@
+using BooksShop.Basket.Application.Interfaces;
 using BooksShop.Basket.Domain;
+using BooksShop.Basket.Infra;
+using BooksShop.Basket.Infra.Models;
 using BooksShop.Basket.Repository.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,11 +11,11 @@ namespace BooksShop.Basket.API.Controllers
     [Route("api/[controller]")]
     public class BasketController : ControllerBase
     {
-        private readonly IBasketRepository _basketRepository;
+        private readonly IBasketService _basketService;
 
-        public BasketController(IBasketRepository basketRepository)
+        public BasketController(IBasketService basketService)
         {
-            _basketRepository = basketRepository;
+            _basketService = basketService;
         }
 
         [HttpGet]
@@ -20,7 +23,7 @@ namespace BooksShop.Basket.API.Controllers
         {
             try
             {
-                return Ok(await _basketRepository.GetBasketAsync(userName) ??  new ShoppingCart(userName));
+                return Ok(await _basketService.GetBasketAsync(userName) ??  new ShoppingCart(userName));
             }
             catch(Exception e)
             {
@@ -34,7 +37,7 @@ namespace BooksShop.Basket.API.Controllers
         {
             try
             {
-                return Ok(await _basketRepository.UpdateBasketAsync(basket));
+                return Ok(await _basketService.UpdateBasketAsync(basket));
             }
             catch(Exception e)
             {
@@ -48,7 +51,7 @@ namespace BooksShop.Basket.API.Controllers
         {
             try
             {
-                await _basketRepository.DeleteBasket(userName);
+                await _basketService.DeleteBasket(userName);
                 return Ok();
             }
             catch(Exception e)
@@ -57,5 +60,27 @@ namespace BooksShop.Basket.API.Controllers
                 "Error: " + e.Message);
             }
         }
+
+        [HttpPost("checkout")]
+        public async Task<IActionResult> Checkout([FromBody] BasketCheckout basketCheckout)
+        {
+            try
+            {
+                var basket = await _basketService.GetBasketAsync(basketCheckout.UserName);
+
+                if (basket == null)
+                    return NotFound();
+
+                _basketService.Checkout(basketCheckout);
+                
+                return Ok();
+            }
+            catch(Exception e)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                "Error: " + e.Message);
+            }
+        }
+
     }
 }

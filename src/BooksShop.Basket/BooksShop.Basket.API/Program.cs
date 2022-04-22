@@ -1,3 +1,7 @@
+using BooksShop.Basket.Application;
+using BooksShop.Basket.Application.Interfaces;
+using BooksShop.Basket.Infra;
+using BooksShop.Basket.Infra.Interfaces;
 using BooksShop.Basket.Repository;
 using BooksShop.Basket.Repository.Interfaces;
 
@@ -16,7 +20,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<IBasketService, BasketService>();
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
+
+builder.Services.AddScoped<IRabbitMQMessageSender, RabbitMQMessageSender>();
 
 var app = builder.Build();
 

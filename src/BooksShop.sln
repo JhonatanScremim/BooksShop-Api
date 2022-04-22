@@ -33,6 +33,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksShop.Catalog.Infra", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksShop.Catalog.External", "BooksShop.Catalog\BooksShop.Catalog.External\BooksShop.Catalog.External.csproj", "{AFD3AF7A-1152-4BA5-BFE5-8968AAA1B3D8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksShop.Basket.Application", "BooksShop.Basket\BooksShop.Basket.Application\BooksShop.Basket.Application.csproj", "{4EBD68CF-87DE-4012-8A3B-7CF25DB055D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksShop.Basket.Infra", "BooksShop.Basket\BooksShop.Basket.Infra\BooksShop.Basket.Infra.csproj", "{BDA210AE-5034-4D67-8C84-E11D8450E401}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -90,6 +94,14 @@ Global
 		{AFD3AF7A-1152-4BA5-BFE5-8968AAA1B3D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFD3AF7A-1152-4BA5-BFE5-8968AAA1B3D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFD3AF7A-1152-4BA5-BFE5-8968AAA1B3D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EBD68CF-87DE-4012-8A3B-7CF25DB055D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EBD68CF-87DE-4012-8A3B-7CF25DB055D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EBD68CF-87DE-4012-8A3B-7CF25DB055D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EBD68CF-87DE-4012-8A3B-7CF25DB055D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDA210AE-5034-4D67-8C84-E11D8450E401}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDA210AE-5034-4D67-8C84-E11D8450E401}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDA210AE-5034-4D67-8C84-E11D8450E401}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDA210AE-5034-4D67-8C84-E11D8450E401}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C34D452B-4C2D-4AF5-83A3-92A6BA0F5D23} = {03A11614-E68E-4BD9-8C6D-CC4DE3203269}
@@ -104,5 +116,7 @@ Global
 		{506052B3-DADE-4A2F-BF46-74AF0C0027FE} = {1330C67C-7CB5-4A04-A4BD-08BAC432F2F2}
 		{8000C4FA-609F-4395-895F-4A2DB1FB585E} = {03A11614-E68E-4BD9-8C6D-CC4DE3203269}
 		{AFD3AF7A-1152-4BA5-BFE5-8968AAA1B3D8} = {03A11614-E68E-4BD9-8C6D-CC4DE3203269}
+		{4EBD68CF-87DE-4012-8A3B-7CF25DB055D4} = {47991A10-7997-4DB1-A1F0-B5A5E5F861D4}
+		{BDA210AE-5034-4D67-8C84-E11D8450E401} = {47991A10-7997-4DB1-A1F0-B5A5E5F861D4}
 	EndGlobalSection
 EndGlobal
