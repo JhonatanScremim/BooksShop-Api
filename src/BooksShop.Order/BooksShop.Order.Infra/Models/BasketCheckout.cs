@@ -1,6 +1,6 @@
-namespace BooksShop.Basket.Infra.Models
+namespace BooksShop.Order.Infra.Models
 {
-    public class BasketCheckout : BaseMessage
+    public class BasketCheckout
     {
         public string UserName { get; set; }
         public double TotalPrice { get; set; }
