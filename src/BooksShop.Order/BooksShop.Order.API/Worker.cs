@@ -13,16 +13,14 @@ namespace BooksShop.Order.API
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            // Option 1
             while (!stoppingToken.IsCancellationRequested)
             {
-                // do async work
                 using (var scope = _serviceScopeFactory.CreateScope())
                 {
                     var consumerService = scope.ServiceProvider.GetRequiredService<IRabbitMQMessageConsumer>();
                     await consumerService.ConsumerCheckout();
                 }
-                await Task.Delay(TimeSpan.FromSeconds(10), stoppingToken);
+                await Task.Delay(TimeSpan.FromSeconds(20), stoppingToken);
             }
         }
     }

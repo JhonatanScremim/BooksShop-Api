@@ -3,20 +3,24 @@ using System.Text.Json;
 using BooksShop.Order.Infra.Interfaces;
 using BooksShop.Order.Infra.Models;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using BooksShop.Order.Repository.Interfaces;
+using System.Threading.Tasks;
+using System;
 
 namespace BooksShop.Order.Infra
 {
     public class RabbitMQMessageConsumer : IRabbitMQMessageConsumer
     {
+        private readonly IBaseRepository _baseRepository;
         private readonly IConfiguration _configuration;
         private IConnection _connection;
         private IModel _channel;
 
-        public RabbitMQMessageConsumer(IConfiguration configuration)
+        public RabbitMQMessageConsumer(IBaseRepository baseRepository, IConfiguration configuration)
         {
+            _baseRepository = baseRepository;
             _configuration = configuration;
 
             var factory = new ConnectionFactory()
@@ -28,29 +32,61 @@ namespace BooksShop.Order.Infra
             _connection = factory.CreateConnection();
 
             _channel = _connection.CreateModel();
-            _channel.QueueDeclare(queue: "Checkout Queue", false, false, false, arguments: null); 
+            _channel.QueueDeclare(queue: "Checkout Queue", false, false, false, arguments: null);
         }
 
         public async Task ConsumerCheckout()
         {
+
             var consumer = new EventingBasicConsumer(_channel);
-            consumer.Received += (channel, ev) => 
+
+            consumer.Received += (channel, ev) =>
             {
-                //Obter conteudo em um array de bytes e converter para uma string
-                var content = Encoding.UTF8.GetString(ev.Body.ToArray());
-                var order = JsonSerializer.Deserialize<BasketCheckout>(content);
-                ProccessOrder(order).GetAwaiter().GetResult();
-                
-                //Exclui pedido da fila
-                _channel.BasicAck(ev.DeliveryTag, false);
+                try
+                {
+                    Console.WriteLine("--------------------------------------Entrou na leitura----------------------");
+
+                     //Obter conteudo em um array de bytes e converter para uma string
+                     var content = Encoding.UTF8.GetString(ev.Body.ToArray());
+                    var order = JsonSerializer.Deserialize<BasketCheckout>(content);
+
+                    ProccessOrder(order).GetAwaiter().GetResult();
+                    Console.WriteLine("Sucesso");
+                    //Exclui pedido da fila
+                    _channel.BasicAck(ev.DeliveryTag, false);
+                }
+                catch (Exception ex)
+                {
+                    _channel.BasicNack(ev.DeliveryTag, true, false);
+                }
             };
+
+            Console.WriteLine("--------------------------------------Saiu do metodo----------------------");
 
             _channel.BasicConsume("Checkout Queue", false, consumer);
         }
 
-        private async Task ProccessOrder(BasketCheckout order)
+        public async Task<bool> ProccessOrder(BasketCheckout basketCheckout)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("--------------------------------------Entrou no processo----------------------");
+
+            var order = new Domain.Order(
+                    basketCheckout.UserName,
+                    basketCheckout.TotalPrice,
+                    JsonSerializer.Serialize(basketCheckout.UserInformation),
+                    string.Join(", ", basketCheckout.BooksIds),
+                    JsonSerializer.Serialize(basketCheckout.Address),
+                    JsonSerializer.Serialize(basketCheckout.PaymentInformation)
+                );
+
+            Console.WriteLine("--------------------------------------Ir para salvar----------------------");
+
+            _baseRepository.Create(order);
+            
+            Console.WriteLine("--------------------------------------Salvou com sucesso----------------------");
+            
+            return await _baseRepository.SaveChangesAsync();
+            
         }
     }
 }

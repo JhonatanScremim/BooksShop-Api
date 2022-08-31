@@ -32,7 +32,7 @@ namespace BooksShop.Basket.API.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPut]
         public async Task<IActionResult> UpdateBasketAsync(ShoppingCart basket)
         {
             try
