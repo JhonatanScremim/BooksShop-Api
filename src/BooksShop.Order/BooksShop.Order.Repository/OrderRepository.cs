@@ -1,24 +1,26 @@
 using BooksShop.Order.Repository.Context;
 using BooksShop.Order.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace BooksShop.Order.Repository
 {
     public class OrderRepository : IOrderRepository
     {
-        private readonly DataContext _context;
+        private readonly DbContextOptions<DataContext> _context;
 
-        public OrderRepository(DataContext context)
+        public OrderRepository(DbContextOptions<DataContext> context)
         {
             _context = context;
         }
         public async Task<bool> CreateOrder(Domain.Order order)
         {
-            if (order == null || _context.Order == null)
+            await using var _db = new DataContext(_context);
+            if (order == null || _db.Order == null)
                 return false;
+                
+            _db.Order.Add(order);
 
-            _context.Order.Add(order);
-
-            return (await _context.SaveChangesAsync() > 0);
+            return (await _db.SaveChangesAsync() > 0);
         }
     }
 }

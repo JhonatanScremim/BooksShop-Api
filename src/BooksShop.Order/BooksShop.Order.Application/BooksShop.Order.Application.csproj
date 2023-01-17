@@ -12,4 +12,9 @@
     <ProjectReference Include="..\BooksShop.Order.Infra\BooksShop.Order.Infra.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Hangfire" Version="1.7.32" />
+    <PackageReference Include="Hangfire.SqlServer" Version="1.7.32" />
+  </ItemGroup>
+
 </Project>

@@ -8,19 +8,20 @@ using RabbitMQ.Client.Events;
 using BooksShop.Order.Repository.Interfaces;
 using System.Threading.Tasks;
 using System;
+using BooksShop.Order.Repository;
 
 namespace BooksShop.Order.Infra
 {
     public class RabbitMQMessageConsumer : IRabbitMQMessageConsumer
     {
-        private readonly IBaseRepository _baseRepository;
+        private readonly OrderRepository _orderRepository;
         private readonly IConfiguration _configuration;
         private IConnection _connection;
         private IModel _channel;
 
-        public RabbitMQMessageConsumer(IBaseRepository baseRepository, IConfiguration configuration)
+        public RabbitMQMessageConsumer(OrderRepository orderRepository, IConfiguration configuration)
         {
-            _baseRepository = baseRepository;
+            _orderRepository = orderRepository;
             _configuration = configuration;
 
             var factory = new ConnectionFactory()
@@ -44,32 +45,26 @@ namespace BooksShop.Order.Infra
             {
                 try
                 {
-                    Console.WriteLine("--------------------------------------Entrou na leitura----------------------");
-
-                     //Obter conteudo em um array de bytes e converter para uma string
-                     var content = Encoding.UTF8.GetString(ev.Body.ToArray());
+                    //Obter conteudo em um array de bytes e converter para uma string
+                    var content = Encoding.UTF8.GetString(ev.Body.ToArray());
                     var order = JsonSerializer.Deserialize<BasketCheckout>(content);
 
                     ProccessOrder(order).GetAwaiter().GetResult();
-                    Console.WriteLine("Sucesso");
+                    
                     //Exclui pedido da fila
                     _channel.BasicAck(ev.DeliveryTag, false);
                 }
-                catch (Exception ex)
+                catch(Exception)
                 {
-                    _channel.BasicNack(ev.DeliveryTag, true, false);
+                    return;
                 }
+                
             };
-
-            Console.WriteLine("--------------------------------------Saiu do metodo----------------------");
-
             _channel.BasicConsume("Checkout Queue", false, consumer);
         }
 
-        public async Task<bool> ProccessOrder(BasketCheckout basketCheckout)
+        public async Task ProccessOrder(BasketCheckout basketCheckout)
         {
-            Console.WriteLine("--------------------------------------Entrou no processo----------------------");
-
             var order = new Domain.Order(
                     basketCheckout.UserName,
                     basketCheckout.TotalPrice,
@@ -79,14 +74,7 @@ namespace BooksShop.Order.Infra
                     JsonSerializer.Serialize(basketCheckout.PaymentInformation)
                 );
 
-            Console.WriteLine("--------------------------------------Ir para salvar----------------------");
-
-            _baseRepository.Create(order);
-            
-            Console.WriteLine("--------------------------------------Salvou com sucesso----------------------");
-            
-            return await _baseRepository.SaveChangesAsync();
-            
+            await _orderRepository.CreateOrder(order);
         }
     }
 }
