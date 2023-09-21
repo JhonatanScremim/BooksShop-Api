@@ -1,5 +1,7 @@
+using System.Drawing;
 using BooksShop.Catalog.Repository.Context;
 using BooksShop.Catalog.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace BooksShop.Catalog.Repository
 {
@@ -18,6 +20,22 @@ namespace BooksShop.Catalog.Repository
                 return;
             
             _context.Add(entity);
+        }
+
+        public async Task CreateAsync<T>(T entity)
+        {
+            if(entity == null)
+                return;
+
+            await _context.AddAsync(entity);
+        }
+
+        public void AddRange<T>(List<T> entities)
+        {
+            if(entities == null)
+                return;
+            
+            _context.AddRange(entities);
         }
 
         public void Update<T>(T entity)
@@ -46,5 +64,14 @@ namespace BooksShop.Catalog.Repository
             //Caso houver alguma alteração retorna true
             return (await _context.SaveChangesAsync() > 0);
         }
+
+        public void DetachLocal<T>(T entity)
+        {
+            if(entity == null)
+                return;
+                
+            _context.Entry(entity).State = EntityState.Detached;
+        }
+
     }
 }

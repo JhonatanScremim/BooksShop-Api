@@ -93,8 +93,8 @@ namespace BooksShop.Catalog.API.Controllers
             }
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> DeleteAsync([FromQuery] int bookId)
+        [HttpDelete("{bookId}")]
+        public async Task<IActionResult> DeleteAsync(int bookId)
         {
             try
             {

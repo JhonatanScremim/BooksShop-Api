@@ -8,6 +8,7 @@ using BooksShop.Catalog.Domain;
 using BooksShop.Catalog.Repository.Interfaces;
 using System.Linq;
 using BooksShop.Catalog.Infra.Helpers.Models;
+using System.Collections.Immutable;
 
 namespace BooksShop.Catalog.Application
 {
@@ -81,16 +82,25 @@ namespace BooksShop.Catalog.Application
             if(model.AuthorsIds == null || !model.AuthorsIds.Any())
                 throw new BadRequestException("Author Ids required !");
 
-            //Corrigir exceção
-            _baseRepository.DeleteRange(oldBook.AuthorBooks);
+            foreach(var item in oldBook.AuthorBooks)
+            {
+                _baseRepository.Delete(item);
+            }
+            
+            //Salvar deleções dos autores
+            await _baseRepository.SaveChangesAsync();
+            //Retirar rastreamento da movel Book para atualização
+            _baseRepository.DetachLocal(oldBook);
+
             var book = _mapper.Map<Book>(model);
+            book.Id = bookId;
 
             foreach(var item in model.AuthorsIds)
             {
                 _baseRepository.Create(new AuthorBook
                 {
                     AuthorId = item,
-                    BookId = book.Id
+                    BookId = bookId
                 });
             }
             _baseRepository.Update(book);

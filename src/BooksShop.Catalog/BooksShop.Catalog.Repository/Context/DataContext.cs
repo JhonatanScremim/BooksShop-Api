@@ -27,5 +27,11 @@ namespace BooksShop.Catalog.Repository.Context
                 .WithMany(c => c.AuthorBooks)
                 .HasForeignKey(bc => bc.AuthorId);
         }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            //Configuraçaõ de log, utilizado para ver valores de chaves conflitantes em exceptions
+            optionsBuilder.EnableSensitiveDataLogging();
+        }
     }
 }
