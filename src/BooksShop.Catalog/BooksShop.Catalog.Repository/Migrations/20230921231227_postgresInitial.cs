@@ -1,11 +1,12 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace BooksShop.Catalog.Repository.Migrations
 {
-    public partial class inital : Migration
+    public partial class postgresInitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,9 +14,9 @@ namespace BooksShop.Catalog.Repository.Migrations
                 name: "Author",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -26,9 +27,9 @@ namespace BooksShop.Catalog.Repository.Migrations
                 name: "Publisher",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -39,19 +40,19 @@ namespace BooksShop.Catalog.Repository.Migrations
                 name: "Book",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CoverTypeId = table.Column<int>(type: "int", nullable: false),
-                    LanguageId = table.Column<int>(type: "int", nullable: false),
-                    Pages = table.Column<int>(type: "int", nullable: false),
-                    PublisherId = table.Column<int>(type: "int", nullable: false),
-                    PublicationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DimensionX = table.Column<double>(type: "float", nullable: false),
-                    DimensionY = table.Column<double>(type: "float", nullable: false),
-                    Price = table.Column<double>(type: "float", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Title = table.Column<string>(type: "text", nullable: true),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    CoverTypeId = table.Column<int>(type: "integer", nullable: false),
+                    LanguageId = table.Column<int>(type: "integer", nullable: false),
+                    Pages = table.Column<int>(type: "integer", nullable: false),
+                    PublisherId = table.Column<int>(type: "integer", nullable: false),
+                    PublicationDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    DimensionX = table.Column<double>(type: "double precision", nullable: false),
+                    DimensionY = table.Column<double>(type: "double precision", nullable: false),
+                    Price = table.Column<double>(type: "double precision", nullable: false),
+                    Quantity = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -68,8 +69,8 @@ namespace BooksShop.Catalog.Repository.Migrations
                 name: "AuthorBook",
                 columns: table => new
                 {
-                    AuthorId = table.Column<int>(type: "int", nullable: false),
-                    BookId = table.Column<int>(type: "int", nullable: false)
+                    AuthorId = table.Column<int>(type: "integer", nullable: false),
+                    BookId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {

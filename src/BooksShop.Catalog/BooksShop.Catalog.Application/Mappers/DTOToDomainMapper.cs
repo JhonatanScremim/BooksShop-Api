@@ -10,6 +10,7 @@ namespace BooksShop.Catalog.Application.Helpers.Mappers
         {
             CreateMap<BookDTO, Book>();
             CreateMap<AuthorDTO, Author>();
+            CreateMap<PublisherDTO, Publisher>();
         }
     }
 }

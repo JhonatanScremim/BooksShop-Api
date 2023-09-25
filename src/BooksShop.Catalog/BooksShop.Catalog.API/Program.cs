@@ -14,7 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors();
 builder.Services.AddControllers();
 builder.Services.AddDbContext<DataContext>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("BooksShop-Catalog")));
+            options.UseNpgsql(builder.Configuration.GetConnectionString("BooksShop-Catalog-Postgres")));
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -25,6 +25,8 @@ builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<IBaseRepository, BaseRepository>();
 builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
 builder.Services.AddScoped<IBookRepository, BookRepository>();
+builder.Services.AddScoped<IAuthorService, AuthorService>();
+builder.Services.AddScoped<IPublisherService, PublisherService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

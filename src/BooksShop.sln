@@ -1,65 +1,64 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BooksShop.Catalog", "BooksShop.Catalog", "{03A11614-E68E-4BD9-8C6D-CC4DE3203269}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksShop.Catalog.Application", "BooksShop.Catalog\BooksShop.Catalog.Application\BooksShop.Catalog.Application.csproj", "{C34D452B-4C2D-4AF5-83A3-92A6BA0F5D23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksShop.Catalog.Application", "BooksShop.Catalog\BooksShop.Catalog.Application\BooksShop.Catalog.Application.csproj", "{C34D452B-4C2D-4AF5-83A3-92A6BA0F5D23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksShop.Catalog.API", "BooksShop.Catalog\BooksShop.Catalog.API\BooksShop.Catalog.API.csproj", "{5856DE13-A9BB-4D8A-8B49-6B6500C9D582}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksShop.Catalog.API", "BooksShop.Catalog\BooksShop.Catalog.API\BooksShop.Catalog.API.csproj", "{5856DE13-A9BB-4D8A-8B49-6B6500C9D582}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksShop.Catalog.Domain", "BooksShop.Catalog\BooksShop.Catalog.Domain\BooksShop.Catalog.Domain.csproj", "{1FC15A2E-0AFD-43B4-B51F-422143993C03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksShop.Catalog.Domain", "BooksShop.Catalog\BooksShop.Catalog.Domain\BooksShop.Catalog.Domain.csproj", "{1FC15A2E-0AFD-43B4-B51F-422143993C03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksShop.Catalog.Repository", "BooksShop.Catalog\BooksShop.Catalog.Repository\BooksShop.Catalog.Repository.csproj", "{F0D15B3A-3D47-4665-BE7A-B67010E601AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksShop.Catalog.Repository", "BooksShop.Catalog\BooksShop.Catalog.Repository\BooksShop.Catalog.Repository.csproj", "{F0D15B3A-3D47-4665-BE7A-B67010E601AD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BooksShop.Basket", "BooksShop.Basket", "{47991A10-7997-4DB1-A1F0-B5A5E5F861D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksShop.Basket.API", "BooksShop.Basket\BooksShop.Basket.API\BooksShop.Basket.API.csproj", "{51775226-7EB2-454E-B19D-2684884B78AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksShop.Basket.API", "BooksShop.Basket\BooksShop.Basket.API\BooksShop.Basket.API.csproj", "{51775226-7EB2-454E-B19D-2684884B78AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksShop.Basket.Domain", "BooksShop.Basket\BooksShop.Basket.Domain\BooksShop.Basket.Domain.csproj", "{6C599FA8-6D63-48C3-907E-952BF638EA94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksShop.Basket.Domain", "BooksShop.Basket\BooksShop.Basket.Domain\BooksShop.Basket.Domain.csproj", "{6C599FA8-6D63-48C3-907E-952BF638EA94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksShop.Basket.Repository", "BooksShop.Basket\BooksShop.Basket.Repository\BooksShop.Basket.Repository.csproj", "{C5646718-601F-433B-BC81-6502623C16E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksShop.Basket.Repository", "BooksShop.Basket\BooksShop.Basket.Repository\BooksShop.Basket.Repository.csproj", "{C5646718-601F-433B-BC81-6502623C16E2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BooksShop.Discount", "BooksShop.Discount", "{1330C67C-7CB5-4A04-A4BD-08BAC432F2F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksShop.Discount.API", "BooksShop.Discount\BooksShop.Discount.API\BooksShop.Discount.API.csproj", "{D3F92393-A6F3-4DC8-B839-974D4344ED8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksShop.Discount.API", "BooksShop.Discount\BooksShop.Discount.API\BooksShop.Discount.API.csproj", "{D3F92393-A6F3-4DC8-B839-974D4344ED8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksShop.Discount.Repository", "BooksShop.Discount\BooksShop.Discount.Repository\BooksShop.Discount.Repository.csproj", "{2EC80BD4-03B8-4720-AE81-B300DA180BD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksShop.Discount.Repository", "BooksShop.Discount\BooksShop.Discount.Repository\BooksShop.Discount.Repository.csproj", "{2EC80BD4-03B8-4720-AE81-B300DA180BD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksShop.Discount.Domain", "BooksShop.Discount\BooksShop.Discount.Domain\BooksShop.Discount.Domain.csproj", "{506052B3-DADE-4A2F-BF46-74AF0C0027FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksShop.Discount.Domain", "BooksShop.Discount\BooksShop.Discount.Domain\BooksShop.Discount.Domain.csproj", "{506052B3-DADE-4A2F-BF46-74AF0C0027FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksShop.Catalog.Infra", "BooksShop.Catalog\BooksShop.Catalog.Infra\BooksShop.Catalog.Infra.csproj", "{8000C4FA-609F-4395-895F-4A2DB1FB585E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksShop.Catalog.Infra", "BooksShop.Catalog\BooksShop.Catalog.Infra\BooksShop.Catalog.Infra.csproj", "{8000C4FA-609F-4395-895F-4A2DB1FB585E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksShop.Catalog.External", "BooksShop.Catalog\BooksShop.Catalog.External\BooksShop.Catalog.External.csproj", "{AFD3AF7A-1152-4BA5-BFE5-8968AAA1B3D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksShop.Catalog.External", "BooksShop.Catalog\BooksShop.Catalog.External\BooksShop.Catalog.External.csproj", "{AFD3AF7A-1152-4BA5-BFE5-8968AAA1B3D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksShop.Basket.Application", "BooksShop.Basket\BooksShop.Basket.Application\BooksShop.Basket.Application.csproj", "{4EBD68CF-87DE-4012-8A3B-7CF25DB055D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksShop.Basket.Application", "BooksShop.Basket\BooksShop.Basket.Application\BooksShop.Basket.Application.csproj", "{4EBD68CF-87DE-4012-8A3B-7CF25DB055D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksShop.Basket.Infra", "BooksShop.Basket\BooksShop.Basket.Infra\BooksShop.Basket.Infra.csproj", "{BDA210AE-5034-4D67-8C84-E11D8450E401}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksShop.Basket.Infra", "BooksShop.Basket\BooksShop.Basket.Infra\BooksShop.Basket.Infra.csproj", "{BDA210AE-5034-4D67-8C84-E11D8450E401}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BooksShop.Order", "BooksShop.Order", "{F7D8229D-FDBB-47D1-926F-2D07C2B3986F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksShop.Order.API", "BooksShop.Order\BooksShop.Order.API\BooksShop.Order.API.csproj", "{CA47C8D4-43E2-45B6-8BA0-D9E75426A9FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksShop.Order.API", "BooksShop.Order\BooksShop.Order.API\BooksShop.Order.API.csproj", "{CA47C8D4-43E2-45B6-8BA0-D9E75426A9FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksShop.Order.Application", "BooksShop.Order\BooksShop.Order.Application\BooksShop.Order.Application.csproj", "{05FC9572-A294-46C3-BBBB-481B7395BE42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksShop.Order.Application", "BooksShop.Order\BooksShop.Order.Application\BooksShop.Order.Application.csproj", "{05FC9572-A294-46C3-BBBB-481B7395BE42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksShop.Order.Domain", "BooksShop.Order\BooksShop.Order.Domain\BooksShop.Order.Domain.csproj", "{68755E3F-28BF-4BDB-871A-FA9CCCED36BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksShop.Order.Domain", "BooksShop.Order\BooksShop.Order.Domain\BooksShop.Order.Domain.csproj", "{68755E3F-28BF-4BDB-871A-FA9CCCED36BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksShop.Order.Infra", "BooksShop.Order\BooksShop.Order.Infra\BooksShop.Order.Infra.csproj", "{93FB50EB-1416-407C-8276-A06FCCA9FBF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksShop.Order.Infra", "BooksShop.Order\BooksShop.Order.Infra\BooksShop.Order.Infra.csproj", "{93FB50EB-1416-407C-8276-A06FCCA9FBF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksShop.Order.Repository", "BooksShop.Order\BooksShop.Order.Repository\BooksShop.Order.Repository.csproj", "{7A0938AC-E33D-4C54-A0FB-182DC48390E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksShop.Order.Repository", "BooksShop.Order\BooksShop.Order.Repository\BooksShop.Order.Repository.csproj", "{7A0938AC-E33D-4C54-A0FB-182DC48390E1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BooksShop.APIGateway", "BooksShop.APIGateway", "{0EBD13FD-E84A-44E0-BEFF-29F7085767E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksShop.APIGateway.API", "BooksShop.APIGateway\BooksShop.APIGateway.API\BooksShop.APIGateway.API.csproj", "{5ED02802-E6BC-4556-8317-AD78CA197CEF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksShop.APIGateway.API", "BooksShop.APIGateway\BooksShop.APIGateway.API\BooksShop.APIGateway.API.csproj", "{5ED02802-E6BC-4556-8317-AD78CA197CEF}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{2B7A223D-3959-496B-A0A8-8A150E6227A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C34D452B-4C2D-4AF5-83A3-92A6BA0F5D23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -142,6 +141,13 @@ Global
 		{5ED02802-E6BC-4556-8317-AD78CA197CEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5ED02802-E6BC-4556-8317-AD78CA197CEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5ED02802-E6BC-4556-8317-AD78CA197CEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B7A223D-3959-496B-A0A8-8A150E6227A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B7A223D-3959-496B-A0A8-8A150E6227A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B7A223D-3959-496B-A0A8-8A150E6227A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B7A223D-3959-496B-A0A8-8A150E6227A3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C34D452B-4C2D-4AF5-83A3-92A6BA0F5D23} = {03A11614-E68E-4BD9-8C6D-CC4DE3203269}
@@ -164,5 +170,8 @@ Global
 		{93FB50EB-1416-407C-8276-A06FCCA9FBF1} = {F7D8229D-FDBB-47D1-926F-2D07C2B3986F}
 		{7A0938AC-E33D-4C54-A0FB-182DC48390E1} = {F7D8229D-FDBB-47D1-926F-2D07C2B3986F}
 		{5ED02802-E6BC-4556-8317-AD78CA197CEF} = {0EBD13FD-E84A-44E0-BEFF-29F7085767E6}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AC07D0D8-4F39-452F-BBBD-20348764B04D}
 	EndGlobalSection
 EndGlobal

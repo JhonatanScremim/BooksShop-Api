@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+  catalogdb02:
+    container_name: catalogdb02
+    restart: always
+    ports: 
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=bookShopCatal
+    volumes:
+      - postgres_data:/data/db
+
+  catalog-api:
+    container_name: catalog.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings__BooksShop-Catalog-Postgres=Host=catalogdb02;Port=5432;Pooling=true;Database=bookShopCatal;User Id=postgres;Password=password;"
+    depends_on:
+      - catalogdb02
+    ports:
+      - "8000:80"
