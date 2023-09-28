@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors();
 builder.Services.AddStackExchangeRedisCache(x => 
 {
-    x.Configuration = "localhost:6379";
+    x.Configuration = builder.Configuration.GetValue<string>("ConnectionStringRedis");
 });
 
 builder.Services.AddControllers();

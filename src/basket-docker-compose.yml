@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  basketredis:
+    image: redis
+
+  basket-api:
+    image: ${DOCKER_REGISTRY-}basketapi
+    build:
+      context: .
+      dockerfile: BooksShop.Basket/BooksShop.Basket.API/Dockerfile
+
+volumes: 
+  basketredis_data:

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BooksShop.Basket.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     public class BasketController : ControllerBase
     {
         private readonly IBasketService _basketService;
@@ -18,7 +18,7 @@ namespace BooksShop.Basket.API.Controllers
             _basketService = basketService;
         }
 
-        [HttpGet]
+        [HttpGet("{userName}")]
         public async Task<IActionResult> GetBasketAsync(string userName)
         {
             try
@@ -46,7 +46,7 @@ namespace BooksShop.Basket.API.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpDelete("{userName}")]
         public async Task<IActionResult> DeleteBasketAsync(string userName)
         {
             try
@@ -66,6 +66,7 @@ namespace BooksShop.Basket.API.Controllers
         {
             try
             {
+                Console.WriteLine("Entrou no endpoint");
                 var basket = await _basketService.GetBasketAsync(basketCheckout.UserName);
 
                 if (basket == null)

@@ -54,12 +54,57 @@
           ],
           "UpstreamPathTemplate": "/api/v1/Book/{bookId}",
           "UpstreamHttpMethod": [ "Delete" ]
+        },
+        {
+          "DownstreamPathTemplate": "/api/v1/Basket/{userName}",
+          "DownstreamScheme": "http",
+          "DownstreamHostAndPorts": [
+            {
+              "Host": "{BooksShop-Basket}"
+            }
+          ],
+          "UpstreamPathTemplate": "/api/v1/Basket/{userName}",
+          "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+          "DownstreamPathTemplate": "/api/v1/Basket",
+          "DownstreamScheme": "http",
+          "DownstreamHostAndPorts": [
+            {
+              "Host": "{BooksShop-Basket}"
+            }
+          ],
+          "UpstreamPathTemplate": "/api/v1/Basket",
+          "UpstreamHttpMethod": [ "Put" ]
+        },
+        {
+          "DownstreamPathTemplate": "/api/v1/Basket/{userName}",
+          "DownstreamScheme": "http",
+          "DownstreamHostAndPorts": [
+            {
+              "Host": "{BooksShop-Basket}"
+            }
+          ],
+          "UpstreamPathTemplate": "/api/v1/Basket/{userName}",
+          "UpstreamHttpMethod": [ "Delete" ]
+        },
+        {
+          "DownstreamPathTemplate": "/api/v1/Basket/checkout",
+          "DownstreamScheme": "http",
+          "DownstreamHostAndPorts": [
+            {
+              "Host": "{BooksShop-Basket}"
+            }
+          ],
+          "UpstreamPathTemplate": "/api/v1/Basket/checkout",
+          "UpstreamHttpMethod": [ "Post" ]
         }
       ],
       "GlobalConfiguration": {
           "BaseUrl": "https://localhost:7154",
           "Hosts":{
-            "BooksShop-Catalog": "http://localhost:5185"
+            "BooksShop-Catalog": "http://localhost:5185",
+            "BooksShop-Basket": "http://localhost:5252"
           }
       }
 }
