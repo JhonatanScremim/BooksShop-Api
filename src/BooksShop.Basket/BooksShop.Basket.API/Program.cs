@@ -1,14 +1,5 @@
-using System.Text.Json;
 using BooksShop.Basket.Services;
 using BooksShop.Basket.Services.Interfaces;
-using BooksShop.Basket.Domain;
-using BooksShop.Basket.Services;
-using BooksShop.Basket.Services.Interfaces;
-using BooksShop.Basket.Services.Models;
-using BooksShop.Basket.Services;
-using BooksShop.Basket.Services.Interfaces;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Distributed;
 using BooksShop.Basket.API;
 
 var builder = WebApplication.CreateBuilder(args);
