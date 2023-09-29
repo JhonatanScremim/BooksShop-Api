@@ -1,9 +1,15 @@
-using BooksShop.Basket.Application;
-using BooksShop.Basket.Application.Interfaces;
-using BooksShop.Basket.Infra;
-using BooksShop.Basket.Infra.Interfaces;
-using BooksShop.Basket.Repository;
-using BooksShop.Basket.Repository.Interfaces;
+using System.Text.Json;
+using BooksShop.Basket.Services;
+using BooksShop.Basket.Services.Interfaces;
+using BooksShop.Basket.Domain;
+using BooksShop.Basket.Services;
+using BooksShop.Basket.Services.Interfaces;
+using BooksShop.Basket.Services.Models;
+using BooksShop.Basket.Services;
+using BooksShop.Basket.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Distributed;
+using BooksShop.Basket.API;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,11 +27,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IBasketService, BasketService>();
-builder.Services.AddScoped<IBasketRepository, BasketRepository>();
 
-builder.Services.AddScoped<IRabbitMQMessageSender, RabbitMQMessageSender>();
+builder.Services.AddScoped<IRabbitMQMessageSenderService, RabbitMQMessageSenderService>();
 
 var app = builder.Build();
+
+//Definição endpoints
+app.AddRoutesBasket(builder);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

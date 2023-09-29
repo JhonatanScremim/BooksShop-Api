@@ -1,13 +1,13 @@
 using System.Text;
 using System.Text.Json;
-using BooksShop.Basket.Infra.Interfaces;
-using BooksShop.Basket.Infra.Models;
+using BooksShop.Basket.Services.Interfaces;
+using BooksShop.Basket.Services.Models;
 using Microsoft.Extensions.Configuration;
 using RabbitMQ.Client;
 
-namespace BooksShop.Basket.Infra
+namespace BooksShop.Basket.Services
 {
-    public class RabbitMQMessageSender : IRabbitMQMessageSender
+    public class RabbitMQMessageSenderService : IRabbitMQMessageSenderService
     {
         private readonly IConfiguration _configuration;
         private readonly string _hostName;
@@ -15,7 +15,7 @@ namespace BooksShop.Basket.Infra
         private readonly string _password;
         private IConnection? _connection;
 
-        public RabbitMQMessageSender(IConfiguration configuration)
+        public RabbitMQMessageSenderService(IConfiguration configuration)
         {
             _configuration = configuration;
             _hostName = _configuration.GetValue<string>("RabbitMQSettings:HostName");

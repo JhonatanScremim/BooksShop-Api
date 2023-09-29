@@ -1,16 +1,16 @@
 using System.Runtime.Serialization.Json;
 using System.Text.Json;
 using BooksShop.Basket.Domain;
-using BooksShop.Basket.Repository.Interfaces;
+using BooksShop.Basket.Services.Interfaces;
 using Microsoft.Extensions.Caching.Distributed;
 
-namespace BooksShop.Basket.Repository
+namespace BooksShop.Basket.Services
 {
-    public class BasketRepository : IBasketRepository
+    public class BasketService : IBasketService
     {
         private readonly IDistributedCache _redisCache;
 
-        public BasketRepository(IDistributedCache redisCache)
+        public BasketService(IDistributedCache redisCache)
         {
             _redisCache = redisCache;
         }

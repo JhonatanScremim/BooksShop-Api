@@ -9,9 +9,7 @@ FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["BooksShop.Basket/BooksShop.Basket.API/BooksShop.Basket.API.csproj", "BooksShop.Basket/BooksShop.Basket.API/"]
 COPY ["BooksShop.Basket/BooksShop.Basket.Domain/BooksShop.Basket.Domain.csproj", "BooksShop.Basket/BooksShop.Basket.Domain/"]
-COPY ["BooksShop.Basket/BooksShop.Basket.Repository/BooksShop.Basket.Repository.csproj", "BooksShop.Basket/BooksShop.Basket.Repository/"]
-COPY ["BooksShop.Basket/BooksShop.Basket.Infra/BooksShop.Basket.Infra.csproj", "BooksShop.Basket/BooksShop.Basket.Infra/"]
-COPY ["BooksShop.Basket/BooksShop.Basket.Application/BooksShop.Basket.Application.csproj", "BooksShop.Basket/BooksShop.Basket.Application/"]
+COPY ["BooksShop.Basket/BooksShop.Basket.Services/BooksShop.Basket.Services.csproj", "BooksShop.Basket/BooksShop.Basket.Services/"]
 RUN dotnet restore "BooksShop.Basket/BooksShop.Basket.API/BooksShop.Basket.API.csproj"
 COPY . .
 WORKDIR "/src/BooksShop.Basket/BooksShop.Basket.API"

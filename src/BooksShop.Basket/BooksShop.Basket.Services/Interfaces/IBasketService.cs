@@ -1,8 +1,8 @@
 using BooksShop.Basket.Domain;
 
-namespace BooksShop.Basket.Repository.Interfaces
+namespace BooksShop.Basket.Services.Interfaces
 {
-    public interface IBasketRepository
+    public interface IBasketService
     {
          Task<ShoppingCart?> GetBasketAsync(string userName);
          Task<ShoppingCart?> UpdateBasketAsync(ShoppingCart basket);

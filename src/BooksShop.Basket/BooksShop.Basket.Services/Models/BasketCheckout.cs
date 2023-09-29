@@ -1,4 +1,4 @@
-namespace BooksShop.Basket.Infra.Models
+namespace BooksShop.Basket.Services.Models
 {
     public class BasketCheckout : BaseMessage
     {
