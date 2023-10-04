@@ -1,6 +1,7 @@
 using BooksShop.Basket.Services;
 using BooksShop.Basket.Services.Interfaces;
 using BooksShop.Basket.API;
+using BooksShop.Discount.Grpc.API.Protos;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,8 +19,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IBasketService, BasketService>();
-
 builder.Services.AddScoped<IRabbitMQMessageSenderService, RabbitMQMessageSenderService>();
+builder.Services.AddScoped<DiscountGrpcService>();
+builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(
+    options => options.Address = new Uri("http://localhost:5149"));
 
 var app = builder.Build();
 

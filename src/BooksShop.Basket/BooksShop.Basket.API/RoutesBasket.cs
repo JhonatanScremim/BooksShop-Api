@@ -1,4 +1,5 @@
 using BooksShop.Basket.Domain;
+using BooksShop.Basket.Services;
 using BooksShop.Basket.Services.Interfaces;
 using BooksShop.Basket.Services.Models;
 
@@ -18,9 +19,14 @@ namespace BooksShop.Basket.API
                 }
             });
 
-            app.MapPut("api/v1/Basket", async Task<IResult>(ShoppingCart basket, IBasketService basketService) => {
+            app.MapPut("api/v1/Basket", async Task<IResult>(ShoppingCart basket, IBasketService basketService, DiscountGrpcService discountGrpcService) => {
                 
                 try{
+                    foreach(var item in basket.Items)
+                    {
+                        var coupon = await discountGrpcService.GetDiscount(item.BookId);
+                        item.Price -= coupon.Amount;
+                    }
                     return Results.Ok(await basketService.UpdateBasketAsync(basket));
                 }
                 catch(Exception e){

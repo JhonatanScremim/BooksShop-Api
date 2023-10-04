@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Grpc.AspNetCore" Version="2.57.0" />
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="6.0.3" />
   </ItemGroup>
 
@@ -14,5 +15,11 @@
     <ProjectReference Include="..\BooksShop.Basket.Domain\BooksShop.Basket.Domain.csproj" />
     <PackageReference Include="RabbitMQ.Client" Version="6.2.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="../../BooksShop.Discount.Grpc/BooksShop.Discount.Grpc.API/Protos/Discount.proto" GrpcServices="Client">
+      <Link>Protos\Discount.proto</Link>
+    </Protobuf>
   </ItemGroup>
 </Project>
