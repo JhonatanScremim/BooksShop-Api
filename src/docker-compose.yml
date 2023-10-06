@@ -1,0 +1,34 @@
+version: '3.4'
+
+services:
+  catalogdb02:
+    image: postgres
+    
+  basketredis:
+    image: redis
+    
+  discountdb:
+    image: postgres
+
+  catalog-api:
+    image: ${DOCKER_REGISTRY-}catalogapi
+    build: 
+      context: .
+      dockerfile: BooksShop.Catalog/BooksShop.Catalog.API/Dockerfile
+
+  basket.api:
+    image: ${DOCKER_REGISTRY-}basketapi
+    build:
+      context: .
+      dockerfile: BooksShop.Basket/BooksShop.Basket.API/Dockerfile
+
+  
+  discount.grpc:
+    image: ${DOCKER_REGISTRY-}discountgrpc
+    build:
+      context: .
+      dockerfile: BooksShop.Discount.Grpc/BooksShop.Discount.Grpc.API/Dockerfile
+
+volumes: 
+  basketredis_data:
+  postgresdiscount_data:

@@ -38,8 +38,8 @@ namespace BooksShop.Discount.Grpc.API.Services
         {
             try
             {
-                var coupon = _mapper.Map<Coupon>(request.Coupon);
-                return _mapper.Map<CouponModel>(await _repository.CreateAsync(coupon));
+                await _repository.CreateAsync(_mapper.Map<Coupon>(request.Coupon));
+                return request.Coupon;
             }
             catch(Exception e)
             {
@@ -51,8 +51,8 @@ namespace BooksShop.Discount.Grpc.API.Services
         {
             try
             {
-                var coupon = _mapper.Map<Coupon>(request.Coupon);
-                return _mapper.Map<CouponModel>(await _repository.UpdateAsync(coupon));
+                await _repository.UpdateAsync(_mapper.Map<Coupon>(request.Coupon));
+                return request.Coupon;
             }
             catch(Exception e)
             {

@@ -1,0 +1,68 @@
+
+version: '3,4'
+
+services: 
+  catalogdb02:
+    container_name: catalogdb02
+    restart: always
+    ports: 
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=bookShopCatal
+    volumes:
+      - postgres_data:/data/db
+    
+  basketredis:
+    container_name: basketredis
+    ports:
+      - "6379:6379"
+    volumes:
+      - basketredis_data:/data/db
+      
+  discountdb:
+    container_name: discountdb
+    restart: always
+    ports: 
+      - "5439:5432"
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=discount
+    volumes:
+      - postgresdiscount_data:/data/db
+      
+  catalog-api:
+    container_name: catalog.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings__BooksShop-Catalog-Postgres=Host=catalogdb02;Port=5432;Pooling=true;Database=bookShopCatal;User Id=postgres;Password=password;"
+    depends_on:
+      - catalogdb02
+    ports:
+      - "8000:80"
+
+  basket.api:
+    container_name: basket.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStringRedis=basketredis:6379"
+      - "RabbitMQSettings__HostName={hostnameRabbitMQ}"
+      - "RabbitMQSettings__Username={usernameRabbitMQ}"
+      - "RabbitMQSettings__Password={passwordRabbitMQ}"
+      - "GrpcSettings__DiscountUrl:discount.grpc:8002"
+    depends_on:
+      - basketredis
+    ports:
+      - "8001:80"
+
+  discount.grpc:
+    container_name: discount.grpc
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings__BooksShop-Discount-Postgres=Host=discountdb;Port=5432;Pooling=true;Database=discount;User Id=postgres;Password=password;"
+    depends_on:
+      - discountdb
+    ports:
+      - "8002:80"
